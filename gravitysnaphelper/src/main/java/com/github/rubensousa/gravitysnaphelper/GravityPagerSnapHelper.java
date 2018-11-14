@@ -32,16 +32,20 @@ public class GravityPagerSnapHelper extends PagerSnapHelper {
     private final GravityDelegate delegate;
 
     public GravityPagerSnapHelper(int gravity) {
-        this(gravity, false, null);
+        this(gravity, false);
     }
 
     public GravityPagerSnapHelper(int gravity, boolean enableSnapLastItem) {
-        this(gravity, enableSnapLastItem, null);
+        this(gravity, enableSnapLastItem, 0);
     }
 
-    public GravityPagerSnapHelper(int gravity, boolean enableSnapLastItem,
+    public GravityPagerSnapHelper(int gravity, boolean enableSnapLastItem, int offset) {
+        this(gravity, enableSnapLastItem, offset, null);
+    }
+
+    public GravityPagerSnapHelper(int gravity, boolean enableSnapLastItem, int offset,
                                   @Nullable GravitySnapHelper.SnapListener snapListener) {
-        delegate = new GravityDelegate(gravity, enableSnapLastItem, snapListener);
+        delegate = new GravityDelegate(gravity, enableSnapLastItem, offset, snapListener);
     }
 
     @Override

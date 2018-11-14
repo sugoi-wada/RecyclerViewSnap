@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements Toolbar.OnMenuIte
             snapAdapter.addSnap(new Snap(Gravity.START, "Snap start with padding", true, apps));
             snapAdapter.addSnap(new Snap(Gravity.END, "Snap end", false, apps));
             snapAdapter.addSnap(new Snap(Gravity.END, "Snap end with padding", true, apps));
-            snapAdapter.addSnap(new Snap(Gravity.CENTER, "GravityPager snap", false, apps));
+            snapAdapter.addSnap(new Snap(Gravity.CENTER, "GravityPager snap", false, apps, getResources().getDimensionPixelSize(R.dimen.activity_horizontal_margin)));
             mRecyclerView.setAdapter(snapAdapter);
         } else {
             Adapter adapter = new Adapter(false, false, apps);

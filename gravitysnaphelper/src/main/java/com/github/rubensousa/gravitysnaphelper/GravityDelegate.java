@@ -35,6 +35,7 @@ class GravityDelegate {
     private OrientationHelper verticalHelper;
     private OrientationHelper horizontalHelper;
     private int gravity;
+    private int offset;
     private boolean isRtl;
     private boolean snapLastItem;
     private GravitySnapHelper.SnapListener listener;
@@ -56,6 +57,11 @@ class GravityDelegate {
 
     public GravityDelegate(int gravity, boolean enableSnapLast,
                            @Nullable GravitySnapHelper.SnapListener listener) {
+        this(gravity, enableSnapLast, 0, listener);
+    }
+
+    public GravityDelegate(int gravity, boolean enableSnapLast, int offset,
+                           @Nullable GravitySnapHelper.SnapListener listener) {
         if (gravity != Gravity.START && gravity != Gravity.END
                 && gravity != Gravity.BOTTOM && gravity != Gravity.TOP) {
             throw new IllegalArgumentException("Invalid gravity value. Use START " +
@@ -64,6 +70,7 @@ class GravityDelegate {
         this.snapLastItem = enableSnapLast;
         this.gravity = gravity;
         this.listener = listener;
+        this.offset = offset;
     }
 
     public void attachToRecyclerView(@Nullable RecyclerView recyclerView) {
@@ -192,7 +199,7 @@ class GravityDelegate {
         } else {
             distance = helper.getDecoratedStart(targetView);
         }
-        return distance;
+        return distance - offset;
     }
 
     private int distanceToEnd(View targetView, LinearLayoutManager lm,
@@ -214,7 +221,7 @@ class GravityDelegate {
         } else {
             distance = helper.getDecoratedEnd(targetView) - helper.getEnd();
         }
-        return distance;
+        return distance + offset;
     }
 
     /**
